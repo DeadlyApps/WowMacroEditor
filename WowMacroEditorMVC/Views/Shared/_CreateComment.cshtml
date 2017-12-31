@@ -1,0 +1,20 @@
+﻿@model WowMacroEditorMVC.Models.Comment
+@using (Html.BeginForm("Create", "Comment"))
+{
+    @Html.ValidationSummary(true)
+    <h3  class="ui-widget-header ui-corner-all ui-state-active">
+    Leave Comment</h3>
+    <div class="ui-widget-content ui-corner-all content">
+        @Html.HiddenFor(model => model.MacroID)
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Text)
+        </div>
+        <div class="editor-field">
+            @Html.TextAreaFor(model => model.Text, 10, 55, null)
+            @Html.ValidationMessageFor(model => model.Text)
+        </div>
+        <p>
+            <input type="submit" value="Comment" />
+        </p>
+    </div>
+}

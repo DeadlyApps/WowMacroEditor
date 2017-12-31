@@ -1,0 +1,141 @@
+﻿@model WowMacroEditorMVC.Models.Profile.IndexViewModel
+@{
+    ViewBag.Title = "Profile " + Model.HeaderName;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    
+}
+@section Scripts {
+    <script src="@Url.Content("~/Scripts/Jeditable.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/Profile/Index.js")" type="text/javascript"></script>
+}
+
+@Html.Hidden("hidIsOwner", Model.IsOwner.ToString().ToLower())
+<div id="profilePage">
+    <h1 class="displayName">@Model.HeaderName</h1>
+    <hr />
+    @if (Model.IsOwner)
+    {
+        <text>
+            <center><b>Click the fields below to edit.</b></center>
+        </text>
+    }
+    <table id="top">
+        <tr>
+            <td id="imageCell">@Html.ProfileImage(Model.GravatarID, 160)
+            @if (Model.IsOwner)
+            {
+            <br />
+            <b><a href="http://en.gravatar.com/">Change Picture</a></b>
+            }
+            </td>
+            <td id="summaryDetailsCell">
+                <table class="details">
+                    <tr>
+                        <td colspan="2">
+                            <h2>
+                                Registered User</h2>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="header">
+                            name
+                        </td>
+                        <td>
+                            <span class="displayName">@Model.HeaderName</span>
+                        </td>
+                    </tr>
+                    @if (Model.IsOwner)
+                    {
+                    <tr>
+                        <td class="header">
+                            email (private)
+                        </td>
+                        <td>
+                            <span class="email">@Model.Email</span>
+                        </td>
+                    </tr>
+                    }
+                    <tr>
+                        <td class="header">
+                            member for
+                        </td>
+                        <td>@Model.MemberFor
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="header">
+                            seen
+                        </td>
+                        <td>@Model.LastLogin ago
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="header">
+                            guild website
+                        </td>
+                        <td><span id="guildWebsite">@Model.GuildWebsite</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="header">
+                            location
+                        </td>
+                        <td><span id="location"> @Model.Location</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="header">
+                            age
+                        </td>
+                        <td><span id="age">@Model.Age</span>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+            <td class="description">
+                <b>Description</b>
+                <br />
+                <span class="description-edit">
+                    @Model.Description
+                </span>
+            </td>
+        </tr>
+    </table>
+    <br />
+    <h2>
+        <span id="macroCount">@Model.MacroCount</span> Macros</h2>
+    <br />
+    @foreach (WowMacroEditorMVC.Models.Profile.IndexViewModel.MacroDetails md in @Model.Macros)
+    {
+        <table id="macroList">
+            <tr>
+                <td class="bigCount">
+                    <span>@md.VoteCount</span>
+                    <br />
+                    votes
+                </td>
+                <td class="bigCount">
+                    <span>@md.CommentCount</span>
+                    <br />
+                    comments
+                </td>
+                <td class="bigCount">
+                    <span>@md.ViewCount</span>
+                    <br />
+                    views
+                </td>
+                <td class="titleContent">                    
+                    <a href="@Url.Action("Details", "Macros", new { id = md.MacroID, MacroString = md.Title.ToFriendlyUrl() })" class="title">@md.Title</a>
+                    <br />
+                    @foreach (var t in md.Tags)
+                    {                        
+                        @t.Tag1
+                    }
+                    <div class="macroCreationTime">
+                        @md.CreatedDate.ToString("MMM d") at @md.CreatedDate.ToString("hh:mm")
+                    </div>
+                </td>
+            </tr>
+        </table>
+    }
+</div>

@@ -1,0 +1,3 @@
+﻿ALTER TABLE [dbo].[RankMacro]
+    ADD CONSTRAINT [FK_RankMacro_Macro] FOREIGN KEY ([MacroID]) REFERENCES [dbo].[Macro] ([MacroID]) ON DELETE NO ACTION ON UPDATE NO ACTION;
+

@@ -1,0 +1,3 @@
+﻿ALTER TABLE [dbo].[MacroTags]
+    ADD CONSTRAINT [FK_MacroTags_Macro] FOREIGN KEY ([MacroID]) REFERENCES [dbo].[Macro] ([MacroID]) ON DELETE NO ACTION ON UPDATE NO ACTION;
+

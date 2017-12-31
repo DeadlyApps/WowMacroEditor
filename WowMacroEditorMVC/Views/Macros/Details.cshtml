@@ -1,0 +1,99 @@
+﻿@model WowMacroEditorMVC.Models.Macro
+@{
+    ViewBag.Title = "Details";
+}
+@section BottomOfHeadTag
+{
+    <link href="@Url.Content("~/Content/codemirror.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/mode.css")" rel="stylesheet" type="text/css" />
+}
+@section Scripts {
+    <script src="@Url.Content("~/Scripts/MacroEditor_codemirror.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/MacroEditor_mode.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/Shared/MacroDisplay.js")" type="text/javascript"></script>
+    <script type="text/javascript">
+        function forEach(arr, f) {
+            for (var i = 0, e = arr.length; i < e; ++i) f(arr[i]);
+        }
+        forEach(document.getElementsByName("code"), doStuff);
+        function doStuff(editor) {
+            CodeMirror.fromTextArea(editor, {
+                width: "100%",
+                height: 30,
+                lineNumbers: true,
+                matchBrackets: true,
+                mode: "text/x-csrc",
+                readOnly: true
+            });
+        }
+    </script>
+}
+<table class="macroDisplay ui-widget-content ui-corner-all content" data-macroid="${MacroID}">
+    <tr>
+        <td>
+            <table class="internalMacroDetails" data-macroid="@Model.MacroID">
+                <tr>
+                    <td class="score">
+                        <span>@Model.Rank</span>
+                        <br />
+                        votes
+                    </td>
+                    <td class="vote">
+                        <div class="upvote @ViewBag.UpVoteClickable">
+                            +</div>
+                        <div class="downvote @ViewBag.DownVoteClickable">
+                            -</div>
+                    </td>
+                    <td>
+                        <div class="title">
+                            @Model.Title
+                        </div>
+                        <div class="description">
+                            @Model.Description
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="tags" colspan="3">
+                        <div class="publishDate">
+                            @Model.Created
+                        </div>
+                        <ul class="Tag">
+                            @foreach (var tag in Model.Tags)
+                            { 
+                                <li><a name="tagButton" data-tag="@tag.Tag1">@tag.Tag1</a></li>
+                            }
+                        </ul>
+                    </td>
+                </tr>
+            </table>
+        </td>
+        <td class="profileDetails">
+            @Html.UserTag(Model.UserID)
+        </td>
+    </tr>
+</table>
+<div class="ui-widget-content  content">
+    <div>
+        <textarea name="code">
+@Html.DisplayFor(model => model.MacroText)
+        </textarea>
+    </div>
+    <div id="embed-macro">
+        <h3 class="ui-widget-header ui-state-active">
+            Embed This Macro</h3>
+        <div>
+            <pre class="embed-text">
+@Html.Raw(Html.Encode("<iframe src=\"http://www.WowMacroEditor.com" + Url.Action("Embed", "Macros", new { id = Model.MacroID, MacroString = Model.Title.ToFriendlyUrl() }) + "\" frameborder=\"0\" width=\"560\" height=\"300\">"))
+    @Html.Raw(Html.Encode("     <p>Your browser does not support iframes.</p>"))
+@Html.Raw(Html.Encode("</iframe>"))
+        </pre>
+        </div>
+    </div>
+</div>
+@if (HttpContext.Current.User.Identity.IsAuthenticated)
+{
+    @Html.Action("CreateComment", "Comment", new { id = Model.MacroID, CommentID = (Guid?)null })
+}
+@Html.Action("MacroComments", "Comment", new { id = Model.MacroID })
+@{Html.RenderAction("BrowseTemplate", "Macros", null);}

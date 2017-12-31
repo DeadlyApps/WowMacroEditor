@@ -1,0 +1,55 @@
+﻿@{
+    Layout = null;
+}
+<script id="BrowseTemplate" type="text/x-jquery-tmpl">
+<table class="macroDisplay ui-widget-content ui-corner-all content" data-macroID="${MacroID}">
+    <tr>
+        <td>
+            <table class="internalMacroDetails" data-macroid="${MacroID}">
+                <tr>
+                    <td class="score">
+                        <span>${Rank}</span>
+                        <br />
+                        votes
+                    </td>
+                    <td class="vote">
+                        <div class="upvote ${CanUpVote}">+</div>                        
+                        <div class="downvote ${CanDownVote}">-</div>
+                    </td>
+                    <td >
+                    <div class="title">
+                    <a href="@Url.Action("Details")/${MacroID}">${Title}</a>
+                    </div>
+                    <div class="description">
+                    ${Description}
+                    </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="tags" colspan="3">
+                        <div class="publishDate">
+                            ${Created}
+                        </div>
+                        <ul class="Tag">
+                        {{each Tags}}  <li> <a name="tagButton" data-tag="${$value}">${$value}</a></li>{{/each}}
+                        </ul>
+                    </td>                    
+                </tr>
+            </table>
+        </td>
+        <td class="profileDetails">
+            <div class="profile-tag">
+                <table>
+                    <tr>
+                        <td>
+                            <a href="@Url.Action("Index", "Profile")/${UserID}"><img src="${GravatarUrl}" width="80" height="80"></a>
+                            <br />
+                            <a href="@Url.Action("Index", "Profile")/${UserID}">${DisplayName}</a>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </td>
+    </tr>
+</table>
+</script>

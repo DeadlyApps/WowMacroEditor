@@ -1,0 +1,13 @@
+﻿@section Scripts
+{
+    <script src="/Scripts/jquery-template.js" type="text/javascript"></script>
+    <script src="/Scripts/Controllers/Macros/Browse.js" type="text/javascript"></script>
+    <script src="/Scripts/Shared/MacroDisplay.js" type="text/javascript"></script>
+}
+<div name="searchPager" data-template-page-count="@Url.Action("JsonGetMacroPageCount")" style="width:100%">
+</div>
+<div id="searchResults" data-template-fill="@Url.Action("JsonGetMacroData")" style="width: 100%">
+</div>
+<div name="searchPager" data-template-page-count="@Url.Action("JsonGetMacroPageCount")" style="width:100%">
+</div>
+@{Html.RenderAction("BrowseTemplate", "Macros", null);}

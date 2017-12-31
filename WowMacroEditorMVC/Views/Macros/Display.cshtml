@@ -1,0 +1,73 @@
+﻿@model WowMacroEditorMVC.Models.Macros.DisplayViewModel
+@{
+    this.Layout = "";
+}
+<hr />
+<table class="macroDisplay" data-macroID="@Model.MacroID">
+    <tr>
+        <td>
+            <table class="internalMacroDetails">
+                <tr>
+                    <td class="score">
+                        <span>@Html.DisplayFor(modelItem => Model.Rank)</span>
+                        <br />
+                        votes
+                    </td>
+                    <td class="vote">
+                        <div class="upvote @(Model.CanVoteUp?"clickable":"")">+</div>                        
+                        <div class="downvote @(Model.CanVoteDown?"clickable":"")">-</div>
+                    </td>
+                    <td class="title">
+                         @Html.ActionLink(Model.Title, "Details", new { id = Model.MacroID, MacroString = Model.Title.ToFriendlyUrl() })
+                    </td>
+                </tr>
+                <tr>
+                    <td class="tags" colspan="3">
+                        <div class="publishDate">
+                            @Model.Created
+                        </div>
+                        <ul class="Tag">
+                            @foreach (var tag in Model.Tags)
+                            {
+                                <li>@Html.ActionLink(tag.Tag1.Trim(), "Browse", new { Tag = tag.Tag1.Trim(), Sort = ViewBag.Sort })</li>
+                            }
+                            
+                        </ul>
+
+                    </td>                    
+                </tr>
+            </table>
+        </td>
+        <td class="profileDetails">
+            @Html.UserTag(Model.UserID)
+        </td>
+    </tr>
+</table>
+@*<div class="ui-widget-content ui-corner-all" style="padding: 0.4em; position: relative;">
+    
+    
+    
+    <h3 class="ui-accordion-header ui-helper-reset ui-state-default ui-state-active ui-corner-all">
+        @Model.Title</h3>
+    
+
+
+
+    <div style="float: right;">
+        @Html.UserTag(Model.UserID)
+    </div>
+    Views: @Html.DisplayFor(modelItem => Model.Views)
+    <br />
+    Rank: @Html.DisplayFor(modelItem => Model.Rank)
+    <br />
+    @Html.DisplayFor(modelItem => Model.Description)
+    <hr style="dispay: block; clear: both; visibility: hidden;" />
+    <ul class="Tag">
+        @foreach (var tag in Model.Tags)
+        {
+            <li >@Html.ActionLink(tag.Tag1.Trim(), "Browse", new { Tag = tag.Tag1.Trim(), Sort = ViewBag.Sort })</li>
+        }
+    </ul>
+    @Html.ActionLink("View", "Details", new { id = Model.MacroId, MacroString = Model.Title.ToFriendlyUrl() })
+</div>
+<br />*@ 

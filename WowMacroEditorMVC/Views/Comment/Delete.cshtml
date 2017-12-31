@@ -1,0 +1,25 @@
+﻿@model WowMacroEditorMVC.Models.Comment
+@{
+    ViewBag.Title = "Delete";
+}
+<h2>
+    Delete</h2>
+<h3>
+    Are you sure you want to delete this?</h3>
+<fieldset>
+    <legend>Comment</legend>
+    @Html.HiddenFor(model => model.MacroID)
+    <div class="display-label">
+        Text</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Text)
+    </div>
+</fieldset>
+@using (Html.BeginForm())
+{
+    <p>
+        <input type="submit" value="Delete" />
+        |
+        @Html.ActionLink("Back to Macro" ,"Details","Macros", new { id = Model.MacroID }, null )
+    </p>
+}

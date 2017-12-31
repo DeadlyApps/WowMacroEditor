@@ -1,0 +1,162 @@
+﻿@model WowMacroEditorMVC.Models.Macro
+@{
+    ViewBag.Title = "Macro Editor";
+}
+@section BottomOfHeadTag
+{
+    @Content.Css("~/Content/codemirror.css", Url)
+    @Content.Css("~/Content/mode.css", Url)
+}
+@section Scripts {
+    @Content.Script("~/Scripts/MacroEditor_codemirror.js", Url)
+    @Content.Script("~/Scripts/MacroEditor_Mode.js", Url)
+    @Content.Script("~/Scripts/MacroEditor_complete.js", Url)
+    @Content.Script("~/Scripts/jquery.validate.min.js", Url)
+    @Content.Script("~/Scripts/jquery.validate.unobtrusive.min.js", Url)
+    @Content.Script("~/Scripts/WowMacroEditor.js", Url)
+}
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary(true)
+    <div class="ui-widget-content">
+        @if (HttpContext.Current.User.Identity.IsAuthenticated)
+        {
+            @Html.HiddenFor(model=> model.MacroID)
+            @Html.HiddenFor(model => model.UserID)
+            <h3 class="macro-header ui-accordion-header ui-state-default">
+                @Html.LabelFor(model => model.Title)
+            </h3>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.Title)
+                @Html.ValidationMessageFor(model => model.Title)
+            </div>
+            <br />
+        }
+        <h3 class="macro-header ui-accordion-header ui-state-default">
+            @Html.LabelFor(model => model.MacroText)
+        </h3>
+        <table>
+            <tr>
+                <td style="width: 100%">
+                    <button class="help-button" style="padding: 0.5em" onclick="return showHelp()">
+                    </button>
+                    Note: CTRL + Space to get available suggestions.
+                    <br />
+                </td>
+                <td>
+                    <div class="macro-length">
+                        255
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Select Race:
+                    <select id="raceSelect">
+                        <option value="BloodElf">Blood Elf</option>
+                        <option value="Draenei">Draenei</option>
+                        <option value="Dwarf">Dwarf</option>
+                        <option value="Gnome">Gnome</option>
+                        <option value="Goblin">Goblin</option>
+                        <option value="Human">Human</option>
+                        <option value="NightElf">Night Elf</option>
+                        <option value="Orc">Orc</option>
+                        <option value="Tauren">Tauren</option>
+                        <option value="Troll">Troll</option>
+                        <option value="Undead">Undead</option>
+                        <option value="Worgen">Worgen</option>
+                    </select>
+                    Select Class:
+                    <select id="classSelect">
+                        <option value="DeathKnight">Death Knight</option>
+                        <option value="Druid">Durid</option>
+                        <option value="Hunter">Hunter</option>
+                        <option value="Mage">Mage</option>
+                        <option value="Paladin">Paladin</option>
+                        <option value="Priest">Priest</option>
+                        <option value="Rogue">Rogue</option>
+                        <option value="Shaman">Shaman</option>
+                        <option value="Warlock">Warlock</option>
+                        <option value="Warrior">Warrior</option>
+                    </select>
+                    (For Cast Macros)
+                </td>
+            </tr>
+        </table>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.MacroText)
+            @Html.ValidationMessageFor(model => model.MacroText)
+        </div>
+        @if (HttpContext.Current.User.Identity.IsAuthenticated)
+        {
+            <br />
+            <h3 class=" macro-header  ui-accordion-header ui-state-default">
+                @Html.LabelFor(model => model.Description)
+            </h3>
+            <div class="editor-field">
+                @Html.TextAreaFor(model => model.Description, 10, 55, null)
+                @Html.ValidationMessageFor(model => model.Description)
+            </div>
+            <br />
+            <h3  class="macro-header  ui-accordion-header ui-state-default">Select Macro Tags</h3>
+            <div class="editor-field">
+                <table style="width:100%;">
+                    <tr>
+                    @{
+                        int cnt = 0;
+                        List<WowMacroEditorMVC.Models.Tag> tags = ViewBag.Tags;
+                        if (tags != null)
+                        {
+                            foreach (var tag in tags)
+                            {
+                                if (cnt++ % 6 == 0)
+                                {
+                                    @:  </tr> <tr> 
+                                }
+                                @: <td> 
+                                    <input type="checkbox" 
+                                           name="selectedTags" 
+                                           value="@tag.TagID" 
+                                           @(Html.Raw(Model.Tags.Contains(tag) ? "checked=\"checked\"" : "")) /> 
+                                    @tag.Tag1
+                                @:</td>
+                            }
+                        }
+                        @: </tr>
+                    }
+                </table>
+            </div>
+            <p>
+                <input type="submit" value="Submit Macro" />
+            </p>
+        }
+        <p>Creating a macro for World of Warcraft is simple. Start by putting a slash "/", 
+        then for suggestions of what comes next hit CTRL + SPACE for available commands.
+        Once you start typing, a counter will count down 255 before World of Warcraft will 
+        no longer save your macro to the server. Additional rules apply once you reach over 255
+        however the editor will not stop you from continuing.
+        </p>
+        <p>Clicking the question mark button at the top of the screen will allow you to
+        view a video on YouTube about creating macros using the editor.</p>
+        <p>Selecting your Race/Class combination from the drop downs will filter 
+        the available Spells and Abilities available in cast sequence macros. 
+        Once you have types /Castsequence in the macro editor, you will but able to 
+        hit CTRL + SPACE again to see the available information.
+        </p>
+    </div>
+}
+@if (HttpContext.Current.User.Identity.IsAuthenticated)
+{
+    <div class="content">
+        @Html.ActionLink("Back to List", "Index")
+    </div>
+}
+else
+{
+    <div id="dialog-note" title="Note!">
+        <p>
+            <span class="ui-icon ui-icon-alert" style="float: left; margin: 0 7px 20px 0;"></span>
+            You must be logged in to save!</p>
+    </div>
+}
+<div id="dialog-help" title="Create Macro Tutorial" />

@@ -1,0 +1,117 @@
+﻿@using WowMacroEditorMVC
+@using WowMacroEditorMVC.Models
+@{
+    var db = new WowMacroEditorMVC.Models.WowMacroEditorEntities();
+
+    CompleteUser completeUser = null;
+    var userID = AuthUtil.GetUserID();
+    if (userID != null)
+    {
+        completeUser = db.GetCompleteUser(userID.Value);
+    }
+    
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewBag.Title</title>
+    <link href="@Url.Content("~/Content/themes/custom-theme/jquery-ui-1.8.18.css")" rel="stylesheet"type="text/css" />
+    <link href="@Url.Content("~/Content/jquery-override.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/Site.css")" rel="stylesheet" type="text/css" />
+    <script type="text/javascript">
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-23392520-1']);
+        _gaq.push(['_trackPageview']);
+
+        (function () {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+    </script>
+    @RenderSection("BottomOfHeadTag", false)
+</head>
+<body>
+    <div id="title">
+        <img width="70px" src="/Content/images/bloodelf.png" />
+    </div>
+    <div id="horizaontalHeader" class="ui-widget-header ui-state-active">
+        <div id="titleContent">
+            World of Warcraft Macro Editor</div>
+        <div class="headerSearch">
+            <input type="text" name="q" data-autocomplete="@Url.Action("JsonGetMacroNames", "Macros")" style="width:20em" />
+            <input type="submit" name="search" value="Search Macros" />
+        </div>
+        <div id="headerContent">
+            @if (userID != null)
+            {
+                <span class="activeUser">
+                    @Html.ProfileLink(completeUser.UserIntID.Value, completeUser.DisplayName, @Html.ProfileImage(completeUser.GravatarID, 20).ToHtmlString())
+                    @Html.ProfileLink(completeUser.UserIntID.Value, completeUser.DisplayName)
+                </span>
+            }
+            @Html.Partial("_LogOnPartial")
+        </div>
+    </div>
+    @Html.Hidden("hidSiteUrl", Url.Content("~/"))
+    @Html.Hidden("hidIsLoggedIn", User.Identity.IsAuthenticated)
+    <div class="page">
+        @Html.AntiForgeryToken()
+        <header>
+            
+            <nav>
+            <div class="PageTitle">@ViewBag.Title</div>
+                <ul id="menu" class="menu">
+                    <li class="ui-button ui-widget ui-state-default ui-button-text-only"><a href="http://www.sadsloth.com">Blog</a></li>
+                    <li class="ui-button ui-widget ui-state-default ui-button-text-only">@Html.MenuLink("Create Macro", "Edit", "Macros")</li>
+                    <li class="ui-button ui-widget ui-state-default ui-button-text-only">@Html.MenuLink("Macros", "Browse", "Macros")</li>
+                    <li class="ui-button ui-widget ui-state-default ui-button-text-only">@Html.MenuLink("My Macros", "Index", "Macros")</li>
+                </ul>
+            </nav>
+        </header>
+        <section id="main">
+            <table style="text-align: left; vertical-align: top; width: 100%">
+                <tr>
+                    <td style="text-align: left; vertical-align: top; width: 100%;">
+                  
+                            @RenderBody()
+                    
+                    </td>
+                    <td style="width: 160; vertical-align: top">
+                    @Html.Action("MacroCount", "Macros")
+                    @if (Request.IsSecureConnection != true)
+                    {
+                        <script type="text/javascript"><!--
+                            google_ad_client = "ca-pub-9752535147370856";
+                            /* Wow Macro Editor2 */
+                            google_ad_slot = "5086902955";
+                            google_ad_width = 160;
+                            google_ad_height = 600;
+                            //-->
+                        </script>
+                        <script type="text/javascript" src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+                        </script>
+                    }
+                    </td>
+                </tr>
+            </table>
+                    @if (!HttpContext.Current.User.Identity.IsAuthenticated)
+                    {
+                        @Html.Raw("Start making World of Warcraft macros today: ");
+                        @Html.ActionLink("Register", "Register", "Account");
+                    }
+        </section>
+        <footer>
+
+        </footer>
+    </div>
+</body>
+</html>
+@Content.Script("~/Scripts/jquery-1.7.1.min.js", Url)
+@Content.Script("~/Scripts/modernizr-1.7.min.js", Url)
+@Content.Script("~/Scripts/jquery-ui-1.8.18.custom.min.js", Url)
+@Content.Script("~/Scripts/jquery.unobtrusive-ajax.min.js", Url)
+@Content.Script("~/Scripts/jquery.watermark.min_.js", Url)
+@Content.Script("~/Scripts/WowMacroEditor.js", Url)
+@RenderSection("Scripts", false)

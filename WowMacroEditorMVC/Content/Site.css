@@ -1,0 +1,765 @@
+﻿body
+{
+	background-color: #000;
+
+	font-size: 0.9em;
+	font-family: "Trebuchet MS" , Verdana, Helvetica, Sans-Serif;
+	margin: 0;
+	padding: 0;
+}
+
+.PageTitle
+{ 
+	color:White;
+	float:left;
+	font-size:2em;	
+	font-weight:bold;
+}
+
+a
+{
+    color: #07C;
+    cursor: pointer;
+    text-decoration: none;
+    font-weight: bold;
+}
+macro-header 
+{ 
+	font-size:2.5em;
+	font-weight:bold;
+}
+
+img
+{
+    border: 0;
+}
+
+body.embed
+{
+	padding: 1em;
+}
+
+p, ul
+{
+	margin-bottom: 20px;
+	line-height: 1.6em;
+}
+
+header, footer, nav, section
+{
+	display: block;
+}
+
+.padded
+{
+	padding-bottom: 1em;
+}
+
+.EmbedText
+{
+	padding: 0.5em;
+	background: #FFF;
+	color: #000;
+}
+
+table {
+  border-collapse: collapse;
+}
+
+/* HEADINGS   
+----------------------------------------------------------*/
+h1, h2, h3, h4, h5, h6
+{
+	font-size: 1.5em;
+	color: #000;
+	padding: 0.25em;
+	text-align: center;
+	margin:0;
+}
+
+h1
+{
+	font-size: 2em;
+	padding-bottom: 0;
+}
+
+h2
+{
+}
+
+h3
+{
+	font-size: 1.2em;
+}
+
+h4
+{
+	font-size: 1.1em;
+}
+
+h5, h6
+{
+	font-size: 1em;
+}
+
+
+/* CodeMirror
+----------------------------------------------------------*/
+.completions
+{
+	position: absolute;
+	z-index: 10;
+	overflow: hidden;
+	-webkit-box-shadow: 2px 3px 5px rgba(0,0,0,.2);
+	-moz-box-shadow: 2px 3px 5px rgba(0,0,0,.2);
+	box-shadow: 2px 3px 5px rgba(0,0,0,.2);
+}
+.completions select
+{
+	background: #fafafa;
+	outline: none;
+	border: none;
+	padding: 0;
+	margin: 0;
+	font-family: monospace;
+}
+.CodeMirror
+{
+	border: 1px solid #eee;
+	width: auto;
+	height: auto;
+}
+
+.page
+{
+	width: 1000px;
+	margin-left: auto;
+	margin-right: auto;
+
+}
+
+header, #header
+{
+	position: relative;
+	margin-bottom: 0px;
+	color: #000;
+	padding: 0;
+}
+
+header h1, #header h1
+{
+	font-weight: bold;
+	padding: 5px 0;
+	margin: 0;
+	color: #fff;
+	border: none;
+	line-height: 2em;
+	font-size: 32px !important;
+	text-shadow: 1px 1px 2px #111;
+}
+
+#main
+{
+	padding: 3px 3px 3px 3px;
+	background-color: #fff;
+	border-radius: 4px 0 0 0;
+	-webkit-border-radius: 4px 0 0 0;
+	-moz-border-radius: 4px 0 0 0;
+
+}
+
+footer, #footer
+{
+	background-color: #fff;
+	color: #999;
+	padding: 10px 0;
+	text-align: center;
+	line-height: normal;
+	margin: 0 0 30px 0;
+	font-size: .9em;
+	border-radius: 0 0 4px 4px;
+	-webkit-border-radius: 0 0 4px 4px;
+	-moz-border-radius: 0 0 4px 4px;
+}
+
+/* TAB MENU   
+----------------------------------------------------------*/
+ul.menu
+{
+	position: relative;
+	margin: 0;
+	text-align: right;
+	padding-bottom: 3px;
+}
+
+ul.menu li
+{
+	display: inline;
+	list-style: none;
+	background: none;
+	border: none;
+	margin:0.4em;
+}
+
+ul.menu li#greeting
+{
+	font-weight: bold;
+	text-decoration: none;
+}
+
+ul.menu li a
+{
+	font-weight: bold;
+	text-decoration: none;
+	border-radius: 0px 0px 0 0;
+	-webkit-border-radius: 0px 0px 0 0;
+	-moz-border-radius: 0px 0px 0 0;
+}
+
+/* TAB Tag   
+----------------------------------------------------------*/
+ul.Tag
+{
+	padding: 0 0 2px;
+	position: relative;
+	margin: 0;
+	text-align: right;
+}
+
+ul.Tag li
+{
+	display: inline;
+	list-style: none;
+	line-height: 1.4;
+}
+
+ul.Tag li#greeting
+{
+	font-weight: bold;
+	text-decoration: none;
+}
+
+ul.Tag li a
+{
+	font-weight: bold;
+	text-decoration: none;
+}
+
+/* TAB Pages   
+----------------------------------------------------------*/
+ul#pages
+{
+	padding: 0 0 2px;
+	position: relative;
+	margin: 0;
+	text-align: right;
+}
+
+ul#pages li
+{
+	display: inline;
+	list-style: none;
+}
+
+ul#pages li#greeting
+{
+	padding: 10px 10px;
+	font-weight: bold;
+	text-decoration: none;
+	line-height: 2.8em;
+	color: #fff;
+}
+
+ul#pages li a
+{
+	padding: 10px 10px;
+	font-weight: bold;
+	text-decoration: none;
+	line-height: 2.8em;
+	background-color: #e8eef4;
+	color: #034af3;
+	border-radius: 4px 4px 4px 4px;
+	-webkit-border-radius: 4px 4px 4px 4px;
+	-moz-border-radius: 4px 4px 4px 4px;
+}
+
+ul#pages li a:hover
+{
+	background-color: #fff;
+	text-decoration: none;
+}
+
+ul#pages li a:active
+{
+	background-color: #a6e2a6;
+	text-decoration: none;
+}
+
+ul#pages li a.selected
+{
+	background-color: #fff;
+	color: #000;
+}
+
+/* FORM LAYOUT ELEMENTS   
+----------------------------------------------------------*/
+
+fieldset
+{
+	border: 1px solid #ddd;
+	padding: 0 1.4em 1.4em 1.4em;
+	margin: 0 0 1.5em 0;
+}
+
+legend
+{
+	font-size: 1.2em;
+	font-weight: bold;
+}
+
+textarea
+{
+	min-height: 75px;
+}
+
+input[type="text"], input[type="password"]
+{
+	border: 1px solid #ccc;
+	padding: 2px;
+	font-size: 1.2em;
+	color: #444;
+	width: 25em;
+}
+
+select
+{
+	border: 1px solid #ccc;
+	padding: 2px;
+	font-size: 1.2em;
+	color: #444;
+}
+
+input[type="submit"]
+{
+	font-size: 1.2em;
+	padding: 5px;
+}
+
+
+/* MISC  
+----------------------------------------------------------*/
+.clear
+{
+	clear: both;
+}
+
+.error
+{
+	color: Red;
+}
+
+nav, #menucontainer
+{
+	margin-top: 40px;
+}
+
+div#title
+{
+position:absolute;
+top:35px;
+left:10px;
+}
+
+div.content
+{
+	padding: 0.4em;
+	position: relative;
+}
+
+#logindisplay
+{
+	font-size: 1.1em;
+	display: block;
+	text-align: right;
+	margin: 10px;
+	color: White;
+}
+
+#logindisplay a:link
+{
+	color: white;
+	text-decoration: underline;
+}
+
+#logindisplay a:visited
+{
+	color: white;
+	text-decoration: underline;
+}
+
+#logindisplay a:hover
+{
+	color: white;
+	text-decoration: none;
+}
+
+/* Styles for validation helpers
+-----------------------------------------------------------*/
+.field-validation-error
+{
+	color: #ff0000;
+}
+
+.field-validation-valid
+{
+	display: none;
+}
+
+.input-validation-error
+{
+	border: 1px solid #ff0000;
+	background-color: #ffeeee;
+}
+
+.validation-summary-errors
+{
+	font-weight: bold;
+	color: #ff0000;
+}
+
+.validation-summary-valid
+{
+	display: none;
+}
+
+/* Styles for editor and display helpers
+----------------------------------------------------------*/
+.display-label, .editor-label
+{
+	margin: 1em 0 0 0;
+}
+
+.display-field, .editor-field
+{
+	margin: 0.5em 0 0 0;
+}
+
+.text-box
+{
+	width: 30em;
+}
+
+.text-box.multi-line
+{
+	height: 6.5em;
+}
+
+.tri-state
+{
+	width: 6em;
+}
+
+/*Custom */
+.MacroCount
+{
+	color: #000;
+	font-size: 3em;
+	padding-bottom: 0;
+	margin-bottom: 0;
+}
+
+.headerSearch
+{
+	position:absolute;
+	top:0;
+	left:300px;
+	padding:0;
+	margin:0;
+}
+
+.headerSearch input[type="submit"]
+{
+	font-size:0.98em;
+	padding:0;
+}
+
+.headerSearch input[type="text"]
+{
+	padding:0;
+	font-size:0.98em;
+}
+
+
+
+.SubMacroCount
+{
+	font-size: 1.85em;
+	padding-bottom: 1em;
+	margin-bottom: 0;
+}
+
+.embed-text
+{
+	overflow:scroll;
+	background-color:#FFF;
+	color:#000;
+	width:500px;
+}
+
+#horizaontalHeader
+{
+    position: fixed;    
+    left:0;
+    top:0;
+    width: 100%;
+    height: 25px;
+    border-bottom-width: 5px;
+    border-bottom-style: solid;
+    color: White;
+    text-align:right;
+    z-index:999;
+}
+
+#titleContent
+{
+	position: absolute;    
+	left:50px;
+	top:3px;
+	color: White;
+	font-weight: bold;   
+}
+
+#headerContent
+{
+	padding-right:50px;
+	vertical-align:top;
+	padding-top:1px;
+}
+
+#headerContent img
+{
+	vertical-align:middle;
+}
+
+#headerContent a
+{
+    color: White;
+    font-weight: bold;    
+}
+
+#headerContent .activeUser
+{
+    padding-right: 50px;
+}
+
+
+/* Macro Display */
+.macroDisplay
+{
+	text-align:center;
+    width: 97%;
+    margin:10px;
+}
+
+.macroDisplay .profileDetails
+{
+    width: 100px; 
+    text-align:left;
+}
+
+.macroDisplay .vote
+{
+    font-size: 100px;
+    font-weight: bolder;    
+    text-align: center;
+    line-height: 45px;
+    width: 70px;
+}
+
+.macroDisplay .vote div
+{
+    color: Gray;    
+    height: 45px;
+    overflow: hidden;    
+    
+}
+
+.macroDisplay .vote div.clickable
+{
+    cursor: pointer;
+    color: #26B3F7;
+}
+
+
+.macroDisplay .upvote
+{
+    height: 50px;  
+    cursor: pointer;  
+}
+
+.macroDisplay .downvote
+{
+    cursor: pointer;  
+}
+
+.macroDisplay td.score
+{
+    text-align: center;
+    width: 110px;    
+}
+
+.macroDisplay .score span
+{
+    font-size: 50px;
+    font-weight: bolder;
+    color: Gray;
+}
+
+
+.macroDisplay .title 
+{
+    font-size: 30px;
+    font-weight: bold;
+    text-align:left;
+}
+
+.macroDisplay .title a:hover
+{
+    color:Gray;
+}
+
+.macroDisplay .description 
+{
+    font-weight: bold;
+    text-align:left;
+    color:#26B3F7;
+}
+
+.macroDisplay .tags .Tag
+{
+    padding: 5px;
+    text-align: left;
+}
+
+.macroDisplay .internalMacroDetails
+{
+    width: 100%;
+}
+
+.macroDisplay .publishDate
+{
+    float: right;
+    font-weight: bold;   
+    padding-right:10px; 
+}
+
+
+
+/* Profile Page
+----------------------------------------------------------*/
+#profilePage .details .header
+{
+    font-weight: bold;
+}
+
+#profilePage h1, #profilePage h2
+{
+    text-align: left;
+    
+}
+
+#profilePage #macroList
+{
+   width: 100%;   
+}
+
+#profilePage tr
+{
+    vertical-align: top;
+}
+
+#profilePage #macroList .bigCount
+{
+    font-size: 15px;    
+    color: Gray;
+    text-align: center;
+    width: 60px;
+    
+}
+
+#profilePage #macroList .bigCount span
+{
+    font-weight: bold;    
+    font-size: 25px;
+}
+
+#profilePage #macroList a.title
+{
+    font-weight: bold;
+    font-size: 22px;    
+}
+
+#profilePage #macroCount
+{
+    font-size: 40px;
+    color: Gray;
+}
+
+#profilePage .macroCreationTime
+{
+    font-color: Gray;
+    font-weight: bold;
+    float: right;
+}
+
+#profilePage #macroList titleContent
+{
+   width: 100%; 
+}
+
+
+
+
+#profilePage #macroList tr
+{
+    border-bottom-style: dotted;
+    border-bottom-width: 1px;
+    border-bottom-color: Gray;
+}
+
+#profilePage #top
+{
+    width: 100%;
+}
+
+#profilePage #top #imageCell
+{
+    width: 170px;
+}
+
+#profilePage #top .description
+{
+    background-color: #E0E0E0;
+    
+}
+
+#profilePage #top .description-edit
+{
+    width: 250px;    
+}
+
+#profilePage #top #summaryDetailsCell
+{
+    width: 280px;;
+}
+
+/* Profile Tag */
+.profile-tag
+{
+    display: inline;
+    background-color: #1563BD;
+    color: #E9EEF5;
+    width: 180px;
+    height: 100px;
+    overflow: hidden;
+}

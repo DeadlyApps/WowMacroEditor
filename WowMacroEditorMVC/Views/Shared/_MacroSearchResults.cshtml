@@ -1,0 +1,24 @@
+﻿@model IEnumerable<WowMacroEditorMVC.Models.Macro>
+@foreach (var item in Model)
+{
+   Html.RenderAction("Display", "Macros", new { macroID = item.MacroID });
+}
+<div>
+    <ul id="pages">
+        @for (int i = 0; i <= ViewBag.MacroCount / ViewBag.PageSize; i++)
+        {
+            if (i == ViewBag.SelectedPage)
+            {
+            @Html.Raw("<li>");
+            @Html.ActionLink((i + 1).ToString(), "Browse", new { Sort = ViewBag.Sort, Tag = ViewBag.Tag, Page = i.ToString() }, new { @class = "selected" });
+            @Html.Raw("<//li>");
+            }
+            else
+            {
+            @Html.Raw("<li>");
+            @Html.ActionLink((i + 1).ToString(), "Browse", new { Sort = ViewBag.Sort, Tag = ViewBag.Tag, Page = i.ToString() });
+            @Html.Raw("<//li>");
+            }
+        }
+    </ul>
+</div>

@@ -1,0 +1,11 @@
+﻿@using System.Web.Mvc;
+
+@helper Script(String ScriptName,UrlHelper Url)
+{
+    <script src="@Url.Content(ScriptName)" type="text/javascript"></script>
+}
+
+@helper Css(String CssName,UrlHelper Url)
+{
+    <link href="@Url.Content(CssName)" rel="stylesheet" type="text/css" />
+}

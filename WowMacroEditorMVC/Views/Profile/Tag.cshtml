@@ -1,0 +1,13 @@
+﻿@model WowMacroEditorMVC.Models.Profile.TagViewModel
+
+<div class="profile-tag">
+    <table>
+        <tr>
+            <td>
+                @Html.ProfileLink(Model.UserIntID, Model.DisplayName, Html.ProfileImage(Model.GravatarID, 80).ToHtmlString())
+                <br />
+                @Html.ProfileLink(Model.UserIntID, Model.DisplayName)
+            </td>
+        </tr>
+    </table>
+</div>
